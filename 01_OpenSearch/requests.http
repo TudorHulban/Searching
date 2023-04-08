@@ -1,0 +1,47 @@
+### CREATE Item 1
+POST https://localhost:9200/movies/_doc/1 HTTP/1.1
+content-type: application/json
+Authorization: Basic admin:admin
+
+{
+    "title": "Spirited Away" 
+}
+
+### CREATE Item 2
+POST https://localhost:9200/movies/_doc/2 HTTP/1.1
+content-type: application/json
+Authorization: Basic admin:admin
+
+{
+    "title": "101 Dalmatians" ,
+    "genre": ["Animation"]
+}
+
+### Update Item
+POST https://localhost:9200/movies/_update/1 HTTP/1.1
+content-type: application/json
+Authorization: Basic admin:admin
+
+{
+  "doc": {
+    "title":  "Spirited Away",
+    "genre": ["Animation", "Fantasy"]
+  }
+}
+
+### GET Item
+GET https://localhost:9200/movies/_doc/1 HTTP/1.1
+Authorization: Basic admin:admin
+
+### Search Item
+GET https://localhost:9200/_search HTTP/1.1
+content-type: application/json
+Authorization: Basic admin:admin
+
+{
+  "query": {
+    "match": {
+      "genre": "Animation"
+    }
+  }
+}
